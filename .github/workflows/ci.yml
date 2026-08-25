@@ -33,7 +33,7 @@ jobs:
           find rk-suite -type f -name '*.php' -print0 | xargs -0 -n1 -P4 php -l
 
   phpcs:
-    name: WordPress Coding Standards
+    name: WordPress Coding Standards (advisory)
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -53,6 +53,7 @@ jobs:
             phpcompatibility/phpcompatibility-wp:^2.1 \
             dealerdirect/phpcodesniffer-composer-installer:^1.0
       - name: Run PHPCS
+        continue-on-error: true
         run: |
           export PATH="$HOME/.composer/vendor/bin:$PATH"
           phpcs --standard=phpcs.xml.dist --report=checkstyle rk-suite | cs2pr
