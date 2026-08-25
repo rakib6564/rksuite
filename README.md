@@ -10,15 +10,9 @@ The [`CI` workflow](.github/workflows/ci.yml) runs on pushes to `main`, `master`
 
 ## Releases
 
-The [`Release` workflow](.github/workflows/release.yml) runs when a `v*` tag is pushed. It verifies that the tag matches the `Version:` header in `rk-suite/rk-suite.php`, builds a clean `dist/rk-suite.zip` package, and attaches it to an automatically generated GitHub Release.
+The [`Release` workflow](.github/workflows/release.yml) uses [Release Please](https://github.com/googleapis/release-please) to interpret Conventional Commits, open a release pull request, update the semantic version in `rk-suite/rk-suite.php`, and maintain [`CHANGELOG.md`](CHANGELOG.md). Merging that release pull request updates the version and changelog on `main`. Pushing the generated `v*` tag then verifies the plugin version, builds `dist/rk-suite.zip`, and attaches it to a GitHub Release.
 
-To create a release, update the plugin version, commit the change, and push a matching tag:
-
-```bash
-git commit -am "Release 1.16.7"
-git tag v1.16.7
-git push origin main --tags
-```
+Use Conventional Commit prefixes such as `feat:`, `fix:`, and `BREAKING CHANGE:` to communicate the intended semantic version bump. After the release pull request is merged, the workflow handles the tag, changelog, and release artifact automatically.
 
 The package can also be built locally with:
 
@@ -26,4 +20,4 @@ The package can also be built locally with:
 bash scripts/build-zip.sh
 ```
 
-See [`PIPELINE-SETUP.md`](PIPELINE-SETUP.md) for the pipeline operating notes.
+See [`PIPELINE-SETUP.md`](PIPELINE-SETUP.md) for pipeline operating notes and [`CHANGELOG.md`](CHANGELOG.md) for the generated release history.

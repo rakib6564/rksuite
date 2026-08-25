@@ -1,0 +1,11 @@
+{
+  "release-type": "simple",
+  "package-name": "rk-suite",
+  "changelog-path": "CHANGELOG.md",
+  "include-component-in-tag": false,
+  "bump-minor-pre-major": true,
+  "bump-patch-for-minor-pre-major": true,
+  "extra-files": [
+    "rk-suite/rk-suite.php"
+  ]
+}
