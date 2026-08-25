@@ -1,0 +1,54 @@
+:root{
+  --rk-accent:#0e9384; --rk-accent-d:#0b7d70; --rk-accent-l:#e6f4f2;
+  --rk-grad:linear-gradient(135deg,#0e9384,#17b3a3);
+  --rk-ink:#101828; --rk-muted:#667085; --rk-line:#eaecf0; --rk-soft:#f8fafb; --rk-soft2:#f2f5f7;
+  --rk-white:#fff; --rk-danger:#d92d20; --rk-ok:#12b76a;
+  --rk-shadow-sm:0 1px 2px rgba(16,24,40,.05),0 4px 12px -8px rgba(16,24,40,.16);
+  --rk-r:12px; --rk-r-sm:9px;
+}
+.rk-theme-wrap{ max-width:1120px; margin:18px 20px 72px 0; color:var(--rk-ink); }
+.rk-theme-wrap a{ color:var(--rk-accent); text-decoration:none; }
+.pk-hero{ display:flex; align-items:center; justify-content:space-between; background:var(--rk-grad); color:#fff; border-radius:var(--rk-r); padding:18px 22px; box-shadow:var(--rk-shadow-sm); }
+.rk-hero-slim{ padding:14px 20px; }
+.pk-hero-left{ display:flex; align-items:center; gap:14px; }
+.pk-logo{ width:40px; height:40px; border-radius:10px; background:rgba(255,255,255,.18); display:flex; align-items:center; justify-content:center; font-weight:800; letter-spacing:.5px; }
+.pk-brand{ font-size:17px; font-weight:700; }
+.pk-ver{ font-size:11px; opacity:.8; font-weight:500; }
+.pk-tag{ font-size:12.5px; opacity:.9; }
+.pk-status{ font-size:12px; background:rgba(255,255,255,.16); padding:5px 11px; border-radius:20px; display:inline-flex; align-items:center; gap:7px; }
+.pk-dot{ width:7px; height:7px; border-radius:50%; background:#fff; }
+.rk-subnav{ display:flex; gap:4px; margin:16px 0 20px; border-bottom:1px solid var(--rk-line); }
+.rk-subnav-item{ padding:10px 14px; font-size:13px; font-weight:500; color:var(--rk-muted)!important; border-bottom:2px solid transparent; display:inline-flex; align-items:center; gap:6px; }
+.rk-subnav-item .dashicons{ font-size:16px; width:16px; height:16px; }
+.rk-subnav-item.is-active{ color:var(--rk-accent)!important; border-bottom-color:var(--rk-accent); }
+.rk-page-head{ display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:16px; }
+.rk-page-head h3{ margin:0; }
+.rk-back{ display:inline-flex; align-items:center; gap:4px; font-size:13px; margin-bottom:8px; }
+.rk-muted{ color:var(--rk-muted); }
+.rk-card{ background:var(--rk-white); border:1px solid var(--rk-line); border-radius:var(--rk-r); box-shadow:var(--rk-shadow-sm); }
+.rk-table{ border-radius:var(--rk-r); overflow:hidden; }
+.rk-table th{ font-weight:600; }
+.rk-col-act{ text-align:right; white-space:nowrap; }
+.rk-badge{ font-size:11px; padding:2px 9px; border-radius:20px; background:var(--rk-soft2); color:var(--rk-muted); }
+.rk-badge-ok{ background:var(--rk-accent-l); color:var(--rk-accent-d); }
+.rk-danger{ color:var(--rk-danger)!important; border-color:#f3c1bc!important; }
+.rk-empty{ text-align:center; padding:56px 20px; background:var(--rk-soft); border:1px dashed var(--rk-line); border-radius:var(--rk-r); color:var(--rk-muted); }
+.rk-empty .dashicons{ font-size:34px; width:34px; height:34px; color:var(--rk-accent); }
+.rk-cond-form{ padding:20px; }
+.rk-cond-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px 18px; margin:14px 0 4px; }
+.rk-check{ display:flex; align-items:center; gap:8px; font-size:13px; }
+.rk-check code{ background:var(--rk-soft2); padding:1px 6px; border-radius:5px; font-size:11px; color:var(--rk-muted); }
+.rk-tools-grid{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+.rk-tool-card{ padding:20px; }
+.rk-card-head{ display:flex; gap:12px; align-items:flex-start; margin-bottom:14px; }
+.rk-card-head .dashicons{ font-size:26px; width:26px; height:26px; color:var(--rk-accent); flex:0 0 auto; margin-top:2px; }
+.rk-card-head h3{ margin:0 0 3px; font-size:15px; }
+.rk-card-head p{ margin:0; font-size:12.5px; }
+.rk-tool-body{ display:flex; flex-direction:column; gap:11px; align-items:flex-start; }
+.rk-check-list{ display:flex; flex-direction:column; gap:7px; padding:10px 12px; background:var(--rk-soft); border:1px solid var(--rk-line); border-radius:var(--rk-r-sm); width:100%; box-sizing:border-box; max-height:220px; overflow:auto; }
+@media(max-width:1000px){ .rk-tools-grid,.rk-cond-grid{ grid-template-columns:1fr; } }
+
+/* header behavior fields */
+.rk-field-row{ display:flex; flex-wrap:wrap; gap:18px; margin:6px 0 4px; }
+.rk-field-row label{ font-size:12.5px; color:var(--rk-muted); }
+.rk-field-row input{ display:block; margin-top:5px; min-width:150px; }

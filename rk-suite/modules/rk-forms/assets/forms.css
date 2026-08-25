@@ -1,0 +1,38 @@
+.rk-form-wrap{ --rk-form-accent:#3a55d9; max-width:640px; }
+.rk-form{ display:flex; flex-direction:column; gap:16px; }
+.rk-form-title{ font-size:24px; font-weight:700; margin:0; }
+.rk-form-desc{ color:#50575e; margin:0; }
+.rk-form-fields{ display:flex; flex-direction:column; gap:16px; }
+.rk-form-row{ display:flex; flex-direction:column; gap:6px; }
+.rk-form-label{ font-weight:600; font-size:14px; }
+.rk-form-req{ color:#d63638; }
+.rk-form input[type=text],.rk-form input[type=email],.rk-form input[type=tel],
+.rk-form input[type=url],.rk-form input[type=number],.rk-form input[type=date],
+.rk-form input[type=time],.rk-form select,.rk-form textarea{
+  width:100%; padding:11px 13px; border:1px solid #d7dae0; border-radius:9px; font-size:15px;
+  background:#fff; color:#1c232b; box-sizing:border-box; transition:border-color .15s, box-shadow .15s;
+}
+.rk-form input:focus,.rk-form select:focus,.rk-form textarea:focus{
+  outline:none; border-color:var(--rk-form-accent); box-shadow:0 0 0 3px rgba(58,85,217,.14);
+}
+.rk-form textarea{ resize:vertical; min-height:110px; }
+.rk-form-choices{ display:flex; flex-direction:column; gap:8px; }
+.rk-form-choice,.rk-form-check{ display:flex; align-items:center; gap:9px; font-size:15px; cursor:pointer; }
+.rk-form-choice input,.rk-form-check input{ width:18px; height:18px; margin:0; accent-color:var(--rk-form-accent); }
+.rk-form-heading h3{ margin:6px 0 0; font-size:18px; font-weight:700; }
+.rk-form-heading p{ margin:2px 0 0; color:#50575e; font-size:14px; }
+.rk-form-foot{ display:flex; align-items:center; gap:12px; margin-top:4px; }
+.rk-form-submit{
+  background:var(--rk-form-accent); color:#fff; border:1px solid var(--rk-form-accent);
+  padding:12px 26px; border-radius:9px; font-size:15px; font-weight:600; cursor:pointer; transition:filter .15s, opacity .15s;
+}
+.rk-form-submit:hover{ filter:brightness(.94); }
+.rk-form-submit:disabled{ opacity:.6; cursor:default; }
+.rk-form-spinner{ width:18px; height:18px; border:2px solid rgba(0,0,0,.15); border-top-color:var(--rk-form-accent); border-radius:50%; animation:rkfspin .7s linear infinite; }
+@keyframes rkfspin{ to{ transform:rotate(360deg); } }
+.rk-form-row.rk-invalid input,.rk-form-row.rk-invalid select,.rk-form-row.rk-invalid textarea{ border-color:#d63638; }
+.rk-form-err{ color:#d63638; font-size:13px; }
+.rk-form-msg{ padding:13px 15px; border-radius:9px; font-size:14px; }
+.rk-form-msg.is-ok{ background:#e6f6ec; color:#137a48; }
+.rk-form-msg.is-err{ background:#fbeaea; color:#b32d2e; }
+.rk-form-notice{ padding:12px 15px; background:#f6f7f7; border:1px dashed #d7dae0; border-radius:9px; color:#50575e; }

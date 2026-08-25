@@ -1,0 +1,19 @@
+.rk-seo-wrap{ max-width:1080px; }
+.rk-seo-hero{ display:flex; align-items:center; gap:14px; background:linear-gradient(135deg,#0e9384,#17b3a3); color:#fff; padding:16px 20px; border-radius:12px; margin:16px 0; }
+.rk-seo-logo{ width:40px; height:40px; border-radius:10px; background:rgba(255,255,255,.18); display:flex; align-items:center; justify-content:center; font-weight:800; }
+.rk-seo-hero h1{ color:#fff; margin:0; font-size:18px; }
+.rk-seo-hero h1 span{ font-size:11px; opacity:.8; font-weight:500; }
+.rk-seo-hero p{ margin:2px 0 0; font-size:12.5px; opacity:.92; }
+.rk-seo-tabs{ display:flex; gap:4px; border-bottom:1px solid #e2e5ea; margin-bottom:18px; }
+.rk-seo-tab{ padding:10px 14px; text-decoration:none; color:#667085; font-weight:500; border-bottom:2px solid transparent; }
+.rk-seo-tab.is-active{ color:#0e9384; border-bottom-color:#0e9384; }
+.rk-seo-cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.rk-seo-card{ background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:16px; }
+.rk-seo-card-h{ display:flex; align-items:center; justify-content:space-between; margin-bottom:6px; }
+.rk-seo-card p{ margin:0; font-size:12.5px; color:#667085; }
+.rk-seo-pill{ font-size:11px; padding:2px 9px; border-radius:20px; }
+.rk-seo-pill.on{ background:#e6f4f2; color:#0b7d70; }
+.rk-seo-pill.off{ background:#fef3f2; color:#b42318; }
+.rk-seo-inline{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin:10px 0 20px; }
+.rk-muted{ color:#667085; }
+@media(max-width:900px){ .rk-seo-cards{ grid-template-columns:1fr; } }

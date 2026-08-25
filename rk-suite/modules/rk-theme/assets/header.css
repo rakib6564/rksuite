@@ -1,0 +1,39 @@
+/* RK Theme — sticky / transparent / shrink header behaviors.
+   Behaviors target the WRAPPER for positioning, and the INNER Elementor
+   section/container for background & padding (that's where the design lives). */
+
+.rk-theme-header{ transition:box-shadow .28s ease; }
+.rk-theme-header > .elementor,
+.rk-theme-header .elementor-top-section,
+.rk-theme-header > .elementor > .e-con{ transition:padding .28s ease, background-color .28s ease; }
+
+/* ---- positioning ----
+   Plain sticky keeps the header in flow (reserves space, no overlap).
+   Transparent stays FIXED as an overlay so the hero shows through, then simply
+   fades to a solid background once you scroll past the offset. */
+.rk-theme-header.rk-sticky:not(.rk-transparent){ position:-webkit-sticky; position:sticky; top:0; z-index:9990; }
+.rk-theme-header.rk-transparent{ position:fixed; top:0; left:0; right:0; z-index:9990; }
+
+/* ---- transparent: reveal the hero at the top of the page ---- */
+.rk-theme-header.rk-transparent:not(.rk-stuck) > .elementor .elementor-top-section,
+.rk-theme-header.rk-transparent:not(.rk-stuck) > .elementor > .e-con,
+.rk-theme-header.rk-transparent:not(.rk-stuck) > .elementor > .elementor-section-wrap > .elementor-top-section{
+  background-color:transparent !important; background-image:none !important;
+}
+
+/* ---- stuck: solid configured background + shadow (transparent headers) ---- */
+.rk-theme-header.rk-transparent.rk-stuck{ background:var(--rk-stuck-bg,#fff) !important; }
+.rk-theme-header.rk-transparent.rk-stuck > .elementor .elementor-top-section,
+.rk-theme-header.rk-transparent.rk-stuck > .elementor > .e-con{ background-color:transparent !important; }
+/* shadow once stuck (works for plain sticky too) */
+.rk-theme-header.rk-has-shadow.rk-stuck{ box-shadow:0 8px 28px -14px rgba(16,24,40,.30); }
+.rk-theme-header.rk-transparent.rk-stuck.rk-has-shadow{ box-shadow:0 8px 28px -14px rgba(16,24,40,.30); }
+
+/* ---- shrink: tighten the inner section padding + scale the logo down ---- */
+.rk-theme-header.rk-shrunk > .elementor .elementor-top-section,
+.rk-theme-header.rk-shrunk > .elementor .elementor-section,
+.rk-theme-header.rk-shrunk > .elementor > .e-con,
+.rk-theme-header.rk-shrunk > .elementor .e-con{ padding-top:6px !important; padding-bottom:6px !important; }
+.rk-theme-header.rk-shrunk .elementor-widget-image img,
+.rk-theme-header.rk-shrunk .elementor-widget-theme-site-logo img,
+.rk-theme-header.rk-shrunk img{ max-height:var(--rk-logo-shrink,40px) !important; width:auto !important; transition:max-height .28s ease; }

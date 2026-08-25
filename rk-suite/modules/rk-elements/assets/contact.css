@@ -1,0 +1,20 @@
+/* RK Contact Form */
+.rk-cf{display:flex;flex-direction:column;gap:16px;position:relative}
+.rk-cf-field{display:flex;flex-direction:column;gap:6px}
+.rk-cf-label{font-size:.9em;font-weight:600}
+.rk-cf-req{color:#dc2626}
+.rk-cf-input,.rk-cf-textarea{width:100%;padding:.7em .85em;border:1px solid #d0d5dd;border-radius:8px;background:#fff;font:inherit;color:inherit;box-sizing:border-box}
+.rk-cf-input:focus,.rk-cf-textarea:focus{outline:none;border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.15)}
+.rk-cf-textarea{resize:vertical;min-height:120px}
+.rk-cf-field.has-error .rk-cf-input,.rk-cf-field.has-error .rk-cf-textarea{border-color:#dc2626}
+.rk-cf-error{color:#dc2626;font-size:.82em}
+.rk-cf-consent{display:flex;align-items:flex-start;gap:8px;font-size:.9em}
+.rk-cf-foot{display:flex}
+.rk-cf-submit{appearance:none;border:none;cursor:pointer;font:inherit;font-weight:600;color:#fff;background:#2563eb;padding:.75em 1.5em;border-radius:8px;transition:background .15s,opacity .15s}
+.rk-cf-submit:hover{opacity:.92}
+.rk-cf-submit.is-loading{opacity:.6;pointer-events:none}
+.rk-cf-submit.is-loading::after{content:"";display:inline-block;width:1em;height:1em;margin-left:.5em;vertical-align:-2px;border:2px solid rgba(255,255,255,.5);border-top-color:#fff;border-radius:50%;animation:rk-cf-spin .7s linear infinite}
+@keyframes rk-cf-spin{to{transform:rotate(360deg)}}
+.rk-cf-msg{padding:.75em 1em;border-radius:8px;font-size:.92em}
+.rk-cf-msg.is-success{background:#ecfdf3;color:#027a48;border:1px solid #a6f4c5}
+.rk-cf-msg.is-error{background:#fef3f2;color:#b42318;border:1px solid #fecdca}

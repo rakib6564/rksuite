@@ -1,0 +1,103 @@
+{
+  "format": "rk-core-model",
+  "version": "1.2.0",
+  "generated": "",
+  "post_types": [
+    {
+      "slug": "class",
+      "singular": "Class",
+      "plural": "Classes",
+      "public": true,
+      "exclude_from_search": false,
+      "publicly_queryable": true,
+      "show_ui": true,
+      "show_in_menu": true,
+      "show_in_nav_menus": true,
+      "hierarchical": false,
+      "has_archive": true,
+      "show_in_rest": true,
+      "supports": [
+        "title",
+        "editor",
+        "thumbnail",
+        "excerpt"
+      ],
+      "menu_icon": "dashicons-welcome-learn-more",
+      "rewrite_slug": "class"
+    }
+  ],
+  "taxonomies": [
+    {
+      "slug": "class_level",
+      "singular": "Class Level",
+      "plural": "Class Levels",
+      "object_types": [
+        "class"
+      ],
+      "hierarchical": true,
+      "public": true,
+      "show_in_rest": true
+    }
+  ],
+  "meta_boxes": [
+    {
+      "id": "grp_class",
+      "title": "Class Details",
+      "post_types": [
+        "class"
+      ],
+      "fields": [
+        {
+          "key": "schedule",
+          "label": "Schedule",
+          "type": "text",
+          "instructions": "",
+          "choices": "",
+          "post_type": ""
+        },
+        {
+          "key": "instructor",
+          "label": "Instructor",
+          "type": "text",
+          "instructions": "",
+          "choices": "",
+          "post_type": ""
+        },
+        {
+          "key": "capacity",
+          "label": "Capacity",
+          "type": "number",
+          "instructions": "",
+          "choices": "",
+          "post_type": ""
+        },
+        {
+          "key": "price",
+          "label": "Price",
+          "type": "text",
+          "instructions": "",
+          "choices": "",
+          "post_type": ""
+        },
+        {
+          "key": "duration",
+          "label": "Duration",
+          "type": "text",
+          "instructions": "",
+          "choices": "",
+          "post_type": ""
+        },
+        {
+          "key": "level",
+          "label": "Level",
+          "type": "select",
+          "instructions": "",
+          "choices": "beginner:Beginner\nintermediate:Intermediate\nadvanced:Advanced",
+          "post_type": ""
+        }
+      ]
+    }
+  ],
+  "relations": [],
+  "queries": []
+}

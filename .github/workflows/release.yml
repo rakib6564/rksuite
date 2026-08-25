@@ -1,0 +1,38 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build and publish plugin release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          coverage: none
+      - name: Verify tag matches plugin version
+        run: |
+          tag_version="${GITHUB_REF_NAME#v}"
+          plugin_version="$(grep -oiP 'Version:\s*\K[0-9.]+' rk-suite/rk-suite.php | head -1)"
+          echo "Tag: ${tag_version}; plugin header: ${plugin_version}"
+          if [ "${tag_version}" != "${plugin_version}" ]; then
+            echo "::error::The Git tag does not match the Version header in rk-suite/rk-suite.php."
+            exit 1
+          fi
+      - name: Build distributable zip
+        run: bash scripts/build-zip.sh
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/rk-suite.zip
+          generate_release_notes: true
+          fail_on_unmatched_files: true

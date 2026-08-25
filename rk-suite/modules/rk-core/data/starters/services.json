@@ -1,0 +1,95 @@
+{
+  "format": "rk-core-model",
+  "version": "1.2.0",
+  "generated": "",
+  "post_types": [
+    {
+      "slug": "service",
+      "singular": "Service",
+      "plural": "Services",
+      "public": true,
+      "exclude_from_search": false,
+      "publicly_queryable": true,
+      "show_ui": true,
+      "show_in_menu": true,
+      "show_in_nav_menus": true,
+      "hierarchical": false,
+      "has_archive": true,
+      "show_in_rest": true,
+      "supports": [
+        "title",
+        "editor",
+        "thumbnail",
+        "excerpt"
+      ],
+      "menu_icon": "dashicons-hammer",
+      "rewrite_slug": "service"
+    }
+  ],
+  "taxonomies": [
+    {
+      "slug": "service_category",
+      "singular": "Service Category",
+      "plural": "Service Categories",
+      "object_types": [
+        "service"
+      ],
+      "hierarchical": true,
+      "public": true,
+      "show_in_rest": true
+    }
+  ],
+  "meta_boxes": [
+    {
+      "id": "grp_service",
+      "title": "Service Details",
+      "post_types": [
+        "service"
+      ],
+      "fields": [
+        {
+          "key": "short_description",
+          "label": "Short description",
+          "type": "textarea",
+          "instructions": "",
+          "choices": "",
+          "post_type": ""
+        },
+        {
+          "key": "price",
+          "label": "Price",
+          "type": "text",
+          "instructions": "",
+          "choices": "",
+          "post_type": ""
+        },
+        {
+          "key": "duration",
+          "label": "Duration",
+          "type": "text",
+          "instructions": "",
+          "choices": "",
+          "post_type": ""
+        },
+        {
+          "key": "icon",
+          "label": "Icon",
+          "type": "icon",
+          "instructions": "",
+          "choices": "",
+          "post_type": ""
+        },
+        {
+          "key": "featured",
+          "label": "Featured",
+          "type": "switcher",
+          "instructions": "",
+          "choices": "",
+          "post_type": ""
+        }
+      ]
+    }
+  ],
+  "relations": [],
+  "queries": []
+}

@@ -1,0 +1,16 @@
+/* RK Migrate — front-end inline editor (admin-only). */
+.rkle-target{ transition:outline-color .12s; }
+.rkle-target:hover{ outline:1px dashed rgba(37,99,235,.55); outline-offset:2px; cursor:text; }
+.rkle-editing{ outline:2px solid #2563eb !important; outline-offset:2px; }
+.rkle-editing[contenteditable="true"]{ outline:2px solid #2563eb !important; }
+
+/* Floating pencil, anchored to page (body). */
+.rkle-pencil{ position:absolute; z-index:99999; width:30px; height:30px; padding:0; border:0; border-radius:50%; background:#fff; color:#2563eb; font-size:15px; line-height:1; cursor:pointer; box-shadow:0 2px 10px rgba(0,0,0,.3); display:none; align-items:center; justify-content:center; }
+.rkle-pencil:hover{ background:#2563eb; color:#fff; }
+
+/* Floating save/cancel toolbar. */
+.rkle-bar{ position:absolute; z-index:100000; display:flex; align-items:center; gap:6px; background:#111827; padding:6px 9px; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,.38); }
+.rkle-bar button{ border:0; border-radius:6px; padding:5px 12px; font-size:12px; font-weight:600; cursor:pointer; }
+.rkle-save{ background:#2563eb; color:#fff; }
+.rkle-cancel{ background:#374151; color:#e5e7eb; }
+.rkle-status{ color:#9ca3af; font-size:12px; margin-left:2px; }

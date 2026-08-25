@@ -1,0 +1,7 @@
+.rk-breadcrumbs{ font-size:13px; color:#667085; margin:14px 0; }
+.rk-breadcrumbs ol{ list-style:none; display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin:0; padding:0; }
+.rk-breadcrumbs li{ display:inline-flex; align-items:center; gap:8px; }
+.rk-breadcrumbs a{ color:inherit; text-decoration:none; }
+.rk-breadcrumbs a:hover{ color:#0e9384; text-decoration:underline; }
+.rk-breadcrumbs [aria-current="page"]{ color:#101828; font-weight:500; }
+.rk-bc-sep{ opacity:.5; }

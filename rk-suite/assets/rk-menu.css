@@ -1,0 +1,18 @@
+/* RK Suite — sidebar category headers + accordion (WordPress admin menu). */
+#toplevel_page_rk-suite .rk-mgroup{ margin:0; }
+#toplevel_page_rk-suite .rk-mgroup-btn{
+  width:100%; display:flex; align-items:center; justify-content:space-between; gap:8px;
+  background:transparent; border:0; cursor:pointer;
+  color:#8c96a0; font-size:10px; font-weight:700; letter-spacing:.07em; text-transform:uppercase;
+  padding:10px 12px 5px 13px; line-height:1.2;
+}
+#toplevel_page_rk-suite .rk-mgroup-btn:hover{ color:#fff; }
+#toplevel_page_rk-suite .rk-mgroup-caret{
+  width:6px; height:6px; border-right:1.5px solid currentColor; border-bottom:1.5px solid currentColor;
+  transform:rotate(-45deg); transition:transform .2s; opacity:.9; flex:none;
+}
+#toplevel_page_rk-suite .rk-mgroup.is-open .rk-mgroup-caret{ transform:rotate(45deg); }
+/* tighten grouped items slightly so the hierarchy reads clearly */
+#toplevel_page_rk-suite .wp-submenu li.rk-mi a{ padding-left:20px; }
+/* when the submenu is a hover flyout, keep headers readable */
+#toplevel_page_rk-suite.wp-not-current-submenu .rk-mgroup-btn{ color:#a7aeb5; }

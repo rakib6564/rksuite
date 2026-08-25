@@ -1,0 +1,79 @@
+{
+  "format": "rk-core-model",
+  "version": "1.2.0",
+  "generated": "",
+  "post_types": [
+    {
+      "slug": "news",
+      "singular": "News",
+      "plural": "News",
+      "public": true,
+      "exclude_from_search": false,
+      "publicly_queryable": true,
+      "show_ui": true,
+      "show_in_menu": true,
+      "show_in_nav_menus": true,
+      "hierarchical": false,
+      "has_archive": true,
+      "show_in_rest": true,
+      "supports": [
+        "title",
+        "editor",
+        "thumbnail",
+        "excerpt"
+      ],
+      "menu_icon": "dashicons-megaphone",
+      "rewrite_slug": "news"
+    }
+  ],
+  "taxonomies": [
+    {
+      "slug": "news_category",
+      "singular": "News Category",
+      "plural": "News Categories",
+      "object_types": [
+        "news"
+      ],
+      "hierarchical": true,
+      "public": true,
+      "show_in_rest": true
+    }
+  ],
+  "meta_boxes": [
+    {
+      "id": "grp_news",
+      "title": "News Details",
+      "post_types": [
+        "news"
+      ],
+      "fields": [
+        {
+          "key": "subtitle",
+          "label": "Subtitle",
+          "type": "text",
+          "instructions": "",
+          "choices": "",
+          "post_type": ""
+        },
+        {
+          "key": "source",
+          "label": "Source",
+          "type": "text",
+          "instructions": "",
+          "choices": "",
+          "post_type": ""
+        },
+        {
+          "key": "external_url",
+          "label": "External URL",
+          "type": "url",
+          "instructions": "",
+          "choices": "",
+          "post_type": ""
+        }
+      ]
+    }
+  ],
+  "relations": [],
+  "queries": []
+}

@@ -1,0 +1,10 @@
+.rk-forms-wrap .rk-form-row-a{ display:grid; grid-template-columns:200px 1fr; gap:16px; align-items:start; padding:11px 0; }
+.rk-forms-wrap .rk-form-label-a{ font-size:13.5px; font-weight:600; color:#1c232b; padding-top:9px; }
+.rk-forms-wrap .rk-form-hint{ color:#787c82; font-size:12.5px; }
+.rk-forms-wrap .rk-form-unread{ display:inline-block; background:#e6f6ec; color:#137a48; font-size:11px; font-weight:700; padding:2px 8px; border-radius:20px; margin-left:6px; }
+.rk-forms-wrap .rk-sub-unread td{ font-weight:600; }
+.rk-forms-wrap .rk-form-filter{ display:flex; align-items:center; gap:14px; margin:0 0 16px; }
+.rk-forms-wrap .rk-kv th{ text-align:left; color:#50575e; font-weight:600; }
+.rk-forms-wrap .rk-danger{ color:#b32d2e; }
+.rk-forms-wrap .rk-right{ text-align:right; }
+@media screen and (max-width:782px){ .rk-forms-wrap .rk-form-row-a{ grid-template-columns:1fr; } }

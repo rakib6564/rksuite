@@ -1,0 +1,17 @@
+# Files & folders excluded from the distributable plugin zip
+/.git
+/.github
+/.gitignore
+/.distignore
+/dist
+/tests
+/node_modules
+/vendor
+/composer.json
+/composer.lock
+/phpunit.xml
+/phpcs.xml.dist
+/scripts
+/AUDIT-1.16.5.md
+*.md
+.DS_Store

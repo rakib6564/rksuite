@@ -1,0 +1,821 @@
+/* ==========================================================================
+   RK Suite — admin UI kit. Minimal, Crocoblock / JetEngine-inspired.
+   One accent (indigo-blue) + neutral grays. Flat, crisp, low-chrome.
+   Scoped to RK wrappers; loaded last so it is the single source of truth.
+   ========================================================================== */
+:root{
+  --rk:#3a55d9; --rk-d:#2c44b8; --rk-l:#eef1fd; --rk-l2:#f5f7fe;
+  --ink:#151823; --ink2:#3a3f52; --muted:#6b7183; --faint:#9aa0b0;
+  --line:#e8eaf1; --line2:#dfe2ec; --soft:#f6f7fb; --soft2:#eef0f6; --white:#fff;
+  --ok:#1f9d63; --ok-l:#e8f6ef; --warn:#c07d16; --warn-l:#fbf1e0; --danger:#d64550; --danger-l:#fbecee;
+  --sh-sm:0 1px 2px rgba(21,24,35,.05);
+  --sh:0 1px 2px rgba(21,24,35,.05),0 4px 16px -8px rgba(21,24,35,.14);
+  --r:10px; --r-sm:8px; --r-xs:6px;
+}
+.rk-core-wrap,.rk-lib-wrap,.rk-migrate-wrap,.rk-seo-wrap,.rk-suite-wrap,.rk-theme-wrap{
+  /* Remap the modules' own palette variables to the minimal indigo scheme */
+  --rk-accent:#3a55d9; --rk-accent-d:#2c44b8; --rk-accent-l:#eef1fd; --rk-grad:#3a55d9;
+  --rk-ink:#151823; --rk-muted:#6b7183; --rk-faint:#9aa0b0;
+  --rk-line:#e8eaf1; --rk-line2:#dfe2ec; --rk-soft:#f6f7fb; --rk-soft2:#eef0f6; --rk-white:#fff;
+  --rk-danger:#d64550; --rk-ok:#1f9d63; --rk-warn:#c07d16;
+  --rk-shadow:0 1px 2px rgba(21,24,35,.05),0 4px 16px -8px rgba(21,24,35,.14); --rk-shadow-sm:0 1px 2px rgba(21,24,35,.05);
+  --rk-r:10px; --rk-r-sm:8px;
+  --wrap:1; max-width:1180px; margin:18px 20px 90px 2px; color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased; font-size:13.5px;
+}
+.rk-core-wrap *,.rk-lib-wrap *,.rk-migrate-wrap *,.rk-seo-wrap *,.rk-suite-wrap *,.rk-theme-wrap *{ box-sizing:border-box; }
+.rk-core-wrap h1,.rk-lib-wrap h1,.rk-migrate-wrap h1,.rk-seo-wrap h1,.rk-suite-wrap h1,.rk-theme-wrap h1{ font-size:19px; font-weight:650; letter-spacing:-.01em; color:var(--ink); }
+.rk-core-wrap h2,.rk-lib-wrap h2,.rk-migrate-wrap h2,.rk-seo-wrap h2,.rk-suite-wrap h2,.rk-theme-wrap h2{ font-size:14px; font-weight:600; margin:20px 0 12px; }
+.rk-core-wrap h3,.rk-lib-wrap h3,.rk-migrate-wrap h3,.rk-seo-wrap h3,.rk-suite-wrap h3,.rk-theme-wrap h3{ font-size:13.5px; font-weight:600; }
+.rk-core-wrap a,.rk-lib-wrap a,.rk-migrate-wrap a,.rk-seo-wrap a,.rk-theme-wrap a,.rk-suite-wrap a{ color:var(--rk); text-decoration:none; }
+.rk-core-wrap a:hover,.rk-seo-wrap a:hover{ color:var(--rk-d); }
+
+/* ---------- Header (flat, minimal) ---------- */
+.rk-core-wrap .pk-hero,.rk-theme-wrap .pk-hero,.rk-migrate-wrap .pk-hero,.rk-seo-hero,.rk-lib-hero{
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  background:var(--white); color:var(--ink); border:1px solid var(--line);
+  border-radius:var(--r); padding:16px 20px; box-shadow:var(--sh-sm); margin:4px 0 18px; position:relative;
+}
+.rk-core-wrap .pk-hero::before,.rk-theme-wrap .pk-hero::before,.rk-seo-hero::before,.rk-lib-hero::before{
+  content:""; position:absolute; left:0; top:14px; bottom:14px; width:3px; border-radius:3px; background:var(--rk);
+}
+.pk-hero-left{ display:flex; align-items:center; gap:13px; }
+.pk-logo,.rk-seo-logo,.rk-lib-logo{ width:38px; height:38px; border-radius:9px; background:var(--rk); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; letter-spacing:.5px; font-size:14px; }
+.pk-brand,.rk-seo-hero h1,.rk-lib-hero h1{ font-size:16px; font-weight:650; color:var(--ink); margin:0; }
+.pk-ver,.rk-seo-hero h1 span,.rk-lib-hero h1 span{ font-size:11px; color:var(--faint); font-weight:500; }
+.pk-tag,.rk-seo-hero p,.rk-lib-hero p{ font-size:12.5px; color:var(--muted); margin:2px 0 0; }
+.pk-status{ font-size:11.5px; background:var(--soft2); color:var(--muted); padding:5px 11px; border-radius:20px; display:inline-flex; align-items:center; gap:7px; font-weight:600; }
+.pk-status-ok{ background:var(--ok-l); color:#137a48; }
+.pk-dot{ width:7px; height:7px; border-radius:50%; background:currentColor; opacity:.8; }
+
+/* ---------- Tabs / subnav ---------- */
+.rk-subnav,.rk-seo-tabs{
+  display:flex; gap:2px; padding:0; margin:0 0 20px; border-bottom:1px solid var(--line);
+  overflow-x:auto; position:sticky; top:32px; z-index:20; background:var(--soft); backdrop-filter:saturate(1.05);
+}
+.rk-subnav::-webkit-scrollbar,.rk-seo-tabs::-webkit-scrollbar{ height:0; }
+.rk-subnav-item,.rk-seo-tab{
+  padding:11px 14px; font-size:13px; font-weight:550; color:var(--muted)!important; border:0!important;
+  border-bottom:2px solid transparent!important; display:inline-flex; align-items:center; gap:7px; white-space:nowrap; transition:.15s; background:transparent; margin-bottom:-1px;
+}
+.rk-subnav-item .dashicons{ font-size:15px; width:15px; height:15px; }
+.rk-subnav-item:hover,.rk-seo-tab:hover{ color:var(--ink)!important; }
+.rk-subnav-item.is-active,.rk-seo-tab.is-active{ color:var(--rk)!important; border-bottom-color:var(--rk)!important; }
+
+/* ---------- Cards ---------- */
+.rk-card,.rk-seo-card,.rk-lib-card,.rk-modcard,.rk-fcard{
+  background:var(--white); border:1px solid var(--line); border-radius:var(--r); box-shadow:none;
+}
+.rk-tool-card,.rk-seo-card,.rk-lib-card,.rk-cond-form{ padding:18px 20px; }
+.rk-card-head .dashicons{ color:var(--rk); }
+.rk-muted,.rk-seo-card p,.rk-moddesc{ color:var(--muted); }
+
+/* ---------- Module grid ---------- */
+.rk-modgrid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(310px,1fr)); gap:16px; }
+.rk-modcard{ padding:18px; display:flex; flex-direction:column; min-height:170px; transition:border-color .18s, box-shadow .18s; }
+.rk-modcard:hover{ border-color:var(--line2); box-shadow:var(--sh); }
+.rk-modcard-head{ display:flex; align-items:flex-start; justify-content:space-between; gap:10px; margin-bottom:8px; }
+.rk-modcard-head h3,.rk-modcard-head strong{ font-size:15px; font-weight:650; }
+.rk-moddesc{ font-size:12.5px; line-height:1.6; flex:1; }
+.rk-modcard-foot{ display:flex; align-items:center; justify-content:space-between; margin-top:16px; padding-top:14px; border-top:1px solid var(--line); }
+.rk-modstate{ font-size:12px; font-weight:600; display:inline-flex; align-items:center; gap:7px; color:var(--muted); }
+.rk-modstate::before{ content:""; width:7px; height:7px; border-radius:50%; background:var(--faint); }
+.rk-modstate.is-on::before,.rk-modstate.on::before{ background:var(--ok); }
+.rk-moddep,.rk-modlock{ font-size:11.5px; color:var(--faint); }
+
+/* ---------- Badges ---------- */
+.rk-badge,.pk-pill,.rk-fcard-type{ font-size:10px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; padding:3px 8px; border-radius:5px; background:var(--soft2); color:var(--muted); }
+.rk-badge-ok,.rk-badge.on{ background:var(--ok-l); color:#137a48; }
+.rk-badge-free,.pk-tier-free{ background:var(--rk-l); color:var(--rk-d); }
+.rk-badge-pro,.pk-tier-pro{ background:#ececff; color:#4b3fd0; }
+
+/* ---------- Buttons ---------- */
+.rk-core-wrap .button,.rk-lib-wrap .button,.rk-migrate-wrap .button,.rk-seo-wrap .button,.rk-suite-wrap .button,.rk-theme-wrap .button{
+  border-radius:var(--r-sm); border:1px solid var(--line2); background:var(--white); color:var(--ink2);
+  font-weight:600; font-size:13px; min-height:36px; padding:8px 16px; line-height:1.4;
+  box-shadow:none; transition:.14s; display:inline-flex; align-items:center; gap:6px;
+}
+.rk-core-wrap .button:hover,.rk-seo-wrap .button:hover,.rk-suite-wrap .button:hover,.rk-lib-wrap .button:hover,.rk-theme-wrap .button:hover,.rk-migrate-wrap .button:hover{ background:var(--soft); border-color:var(--faint); color:var(--ink); }
+.rk-core-wrap .button-primary,.rk-lib-wrap .button-primary,.rk-migrate-wrap .button-primary,.rk-seo-wrap .button-primary,.rk-suite-wrap .button-primary,.rk-theme-wrap .button-primary{
+  background:var(--rk); border-color:var(--rk); color:#fff!important; box-shadow:none;
+}
+.rk-core-wrap .button-primary:hover,.rk-seo-wrap .button-primary:hover,.rk-suite-wrap .button-primary:hover,.rk-lib-wrap .button-primary:hover,.rk-theme-wrap .button-primary:hover,.rk-migrate-wrap .button-primary:hover{ background:var(--rk-d); border-color:var(--rk-d); }
+.rk-danger,.button-link-delete{ color:var(--danger)!important; }
+
+/* ---------- Forms ---------- */
+.rk-core-wrap input[type=text],.rk-core-wrap input[type=url],.rk-core-wrap input[type=email],.rk-core-wrap input[type=number],.rk-core-wrap input[type=search],.rk-core-wrap select,.rk-core-wrap textarea,
+.rk-seo-wrap input[type=text],.rk-seo-wrap input[type=url],.rk-seo-wrap input[type=number],.rk-seo-wrap select,.rk-seo-wrap textarea,
+.rk-lib-wrap input[type=text],.rk-lib-wrap select,.rk-lib-wrap input[type=file],
+.rk-theme-wrap input[type=text],.rk-theme-wrap input[type=number],.rk-theme-wrap select,
+.rk-migrate-wrap input[type=text],.rk-migrate-wrap select,.rk-migrate-wrap textarea{
+  border:1px solid var(--line2); border-radius:var(--r-sm); padding:8px 12px; font-size:13px; color:var(--ink);
+  box-shadow:none; min-height:36px; background:var(--white); transition:border-color .14s, box-shadow .14s;
+}
+.rk-core-wrap input:focus,.rk-core-wrap select:focus,.rk-core-wrap textarea:focus,
+.rk-seo-wrap input:focus,.rk-seo-wrap select:focus,.rk-seo-wrap textarea:focus,
+.rk-lib-wrap input:focus,.rk-lib-wrap select:focus,.rk-theme-wrap input:focus,.rk-theme-wrap select:focus,
+.rk-migrate-wrap input:focus,.rk-migrate-wrap textarea:focus{ border-color:var(--rk); box-shadow:0 0 0 3px var(--rk-l); outline:none; }
+.rk-core-wrap label,.rk-seo-wrap label,.rk-theme-wrap label{ font-weight:550; color:var(--ink2); }
+
+/* ---------- Page head ---------- */
+.rk-page-head{ display:flex; align-items:center; justify-content:space-between; gap:16px; margin:0 0 16px; }
+.rk-page-head h3{ margin:0; font-size:15px; }
+
+/* ---------- Tables ---------- */
+.rk-core-wrap .widefat,.rk-lib-wrap .widefat,.rk-migrate-wrap .widefat,.rk-seo-wrap .widefat,.rk-suite-wrap .widefat,.rk-theme-wrap .widefat,.rk-table{
+  border:1px solid var(--line); border-radius:var(--r); overflow:hidden; box-shadow:none; background:var(--white); border-collapse:separate; border-spacing:0;
+}
+.rk-core-wrap .widefat thead th,.rk-seo-wrap .widefat thead th,.rk-lib-wrap .widefat thead th,.rk-migrate-wrap .widefat thead th,.rk-theme-wrap .widefat thead th,.rk-table thead th{
+  background:var(--soft); font-size:11px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); font-weight:650; padding:10px 14px; border-bottom:1px solid var(--line);
+}
+.rk-core-wrap .widefat td,.rk-seo-wrap .widefat td,.rk-lib-wrap .widefat td,.rk-migrate-wrap .widefat td,.rk-theme-wrap .widefat td,.rk-table td{ padding:11px 14px; font-size:13px; border-bottom:1px solid var(--line); vertical-align:middle; }
+.rk-core-wrap .widefat tbody tr:last-child td,.rk-seo-wrap .widefat tbody tr:last-child td,.rk-table tbody tr:last-child td{ border-bottom:0; }
+.rk-core-wrap .widefat tbody tr:hover,.rk-seo-wrap .widefat tbody tr:hover,.rk-lib-wrap .widefat tbody tr:hover,.rk-migrate-wrap .widefat tbody tr:hover,.rk-theme-wrap .widefat tbody tr:hover{ background:var(--rk-l2); }
+.rk-core-wrap .widefat code,.rk-seo-wrap .widefat code{ background:var(--soft2); border-radius:5px; padding:1px 6px; font-size:12px; color:var(--ink2); }
+
+/* ---------- Toggles ---------- */
+.rk-toggle-row,.rk-fcard-toggle{ display:flex; align-items:center; gap:12px; }
+.rk-toggle-row input[type=checkbox],.rk-fcard-toggle input[type=checkbox]{ appearance:none; -webkit-appearance:none; width:38px; height:22px; border-radius:20px; background:var(--line2); position:relative; cursor:pointer; transition:.18s; flex:none; margin:0; }
+.rk-toggle-row input[type=checkbox]::after,.rk-fcard-toggle input[type=checkbox]::after{ content:""; position:absolute; top:2px; left:2px; width:18px; height:18px; border-radius:50%; background:#fff; box-shadow:0 1px 2px rgba(0,0,0,.25); transition:.18s; }
+.rk-toggle-row input[type=checkbox]:checked,.rk-fcard-toggle input[type=checkbox]:checked{ background:var(--rk); }
+.rk-toggle-row input[type=checkbox]:checked::after,.rk-fcard-toggle input[type=checkbox]:checked::after{ left:18px; }
+
+/* ---------- Empty states ---------- */
+.rk-empty,.rk-lib-empty,.rk-fcards-empty{ text-align:center; color:var(--muted); padding:50px 24px; background:var(--soft); border:1px dashed var(--line2); border-radius:var(--r); }
+
+/* ---------- Notices ---------- */
+.rk-core-wrap .notice,.rk-lib-wrap .notice,.rk-migrate-wrap .notice,.rk-seo-wrap .notice,.rk-suite-wrap .notice,.rk-theme-wrap .notice{
+  border-radius:var(--r-sm); border:1px solid var(--line); border-left-width:3px; box-shadow:none; margin:14px 0;
+}
+
+/* ---------- SVG icon helper ---------- */
+.rk-ico{ width:18px; height:18px; display:inline-flex; flex:none; vertical-align:-4px; }
+.rk-ico svg{ width:100%; height:100%; }
+
+/* ==========================================================================
+   Mobile app-style (<= 782px)
+   ========================================================================== */
+@media screen and (max-width:782px){
+  .rk-core-wrap,.rk-lib-wrap,.rk-migrate-wrap,.rk-seo-wrap,.rk-suite-wrap,.rk-theme-wrap{ margin:10px 8px 96px; }
+  .rk-core-wrap .pk-hero,.rk-theme-wrap .pk-hero,.rk-seo-hero,.rk-lib-hero{ flex-direction:column; align-items:flex-start; gap:12px; padding:14px 16px; }
+  .pk-hero-right{ width:100%; }
+  .rk-subnav,.rk-seo-tabs{ position:sticky; top:46px; -webkit-overflow-scrolling:touch; }
+  .rk-subnav-item,.rk-seo-tab{ padding:11px 14px; }
+  .rk-modgrid,.rk-tools-grid,.rk-seo-cards,.rk-lib-cols,.rk-cond-grid,.rk-starter-grid,.rk-prompt-grid,.rk-lib-grid{ grid-template-columns:1fr!important; }
+  .rk-page-head{ flex-direction:column; align-items:stretch; }
+  .rk-page-head .button{ width:100%; justify-content:center; min-height:44px; }
+  .rk-core-wrap .button,.rk-seo-wrap .button,.rk-suite-wrap .button,.rk-lib-wrap .button,.rk-theme-wrap .button,.rk-migrate-wrap .button{ min-height:44px; }
+
+  .rk-acc thead{ display:none; }
+  .rk-acc,.rk-acc tbody,.rk-acc tr,.rk-acc td{ display:block; width:100%; }
+  .rk-acc{ border:0; box-shadow:none; background:transparent; }
+  .rk-acc tr{ background:var(--white); border:1px solid var(--line); border-radius:var(--r-sm); box-shadow:var(--sh-sm); margin-bottom:12px; overflow:hidden; }
+  .rk-acc td{ padding:11px 14px; border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:space-between; gap:12px; text-align:right; }
+  .rk-acc td:last-child{ border-bottom:0; }
+  .rk-acc td::before{ content:attr(data-th); font-size:11px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); font-weight:700; text-align:left; flex:none; }
+  .rk-acc td.rk-acc-head{ background:var(--soft); cursor:pointer; font-weight:700; text-align:left; }
+  .rk-acc td.rk-acc-head::before{ display:none; }
+  .rk-acc td.rk-acc-head::after{ content:""; width:9px; height:9px; border-right:2px solid var(--muted); border-bottom:2px solid var(--muted); transform:rotate(45deg); transition:transform .2s; }
+  .rk-acc tr.is-open td.rk-acc-head::after{ transform:rotate(-135deg); }
+  .rk-acc tr:not(.is-open) td:not(.rk-acc-head){ display:none; }
+}
+
+/* ---------- overrides for module-hardcoded accents ---------- */
+.rk-seo-pill.on{ background:var(--rk-l)!important; color:var(--rk-d)!important; }
+.rk-seo-tab.is-active{ color:var(--rk)!important; border-bottom-color:var(--rk)!important; }
+.rk-icon-preview{ color:var(--rk)!important; }
+.rk-field-control input:focus,.rk-field-control select:focus,.rk-field-control textarea:focus{ border-color:var(--rk)!important; box-shadow:0 0 0 3px var(--rk-l)!important; }
+
+/* ==========================================================================
+   Rail layout (RK Migrate-style) — left sidebar nav + main content
+   ========================================================================== */
+.rk-has-rail{ display:flex; align-items:flex-start; gap:20px; }
+.rk-rail{ width:238px; flex:none; background:var(--white); border:1px solid var(--line); border-radius:12px; padding:14px; position:sticky; top:40px; box-shadow:var(--sh-sm); }
+.rk-rail-brand{ display:flex; align-items:center; gap:11px; padding:4px 4px 14px; border-bottom:1px solid var(--line); margin-bottom:10px; }
+.rk-rail-brand .pk-logo{ width:38px; height:38px; }
+.rk-rail-brand .pk-brand{ font-size:14.5px; font-weight:600; }
+.rk-rail-brand .pk-ver{ font-size:10.5px; color:var(--faint); font-weight:500; }
+.rk-rail-brand .pk-tag{ font-size:11.5px; color:var(--muted); margin-top:1px; }
+.rk-rail-nav.rk-subnav{ display:flex; flex-direction:column; gap:1px; border:0; background:transparent; position:static; padding:0; margin:0; overflow:visible; }
+.rk-rail-nav .rk-subnav-item{ border:0!important; border-bottom:0!important; border-radius:8px; padding:9px 11px; justify-content:flex-start; font-size:13px; font-weight:500; color:var(--ink2)!important; margin-bottom:0; }
+.rk-rail-nav .rk-subnav-item .dashicons{ color:var(--muted); }
+.rk-rail-nav .rk-subnav-item:hover{ background:var(--soft); color:var(--ink)!important; }
+.rk-rail-nav .rk-subnav-item.is-active{ background:var(--rk-l); color:var(--rk)!important; border:0!important; }
+.rk-rail-nav .rk-subnav-item.is-active .dashicons{ color:var(--rk); }
+.rk-rail-foot{ margin-top:12px; padding-top:12px; border-top:1px solid var(--line); }
+.rk-main{ flex:1 1 auto; min-width:0; }
+@media screen and (max-width:900px){
+  .rk-has-rail{ flex-direction:column; }
+  .rk-rail{ width:100%; position:static; }
+  .rk-rail-nav.rk-subnav{ flex-direction:row; flex-wrap:wrap; }
+  .rk-rail-nav .rk-subnav-item{ flex:1 1 auto; }
+}
+
+/* ---------- brand mark: no-background SVG monogram ---------- */
+.pk-logo,.rk-seo-logo,.rk-lib-logo,.rk-rail-brand .pk-logo,.pk-rail-logo{
+  background:transparent !important; box-shadow:none !important; border-radius:0 !important;
+  color:transparent !important; font-size:0 !important; line-height:0 !important;
+  width:40px !important; height:40px !important;
+  background-image:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2044%2044'%3E%3Cg%20fill='none'%20stroke='%233a55d9'%20stroke-width='3.4'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpath%20d='M9%206v32'/%3E%3Cpath%20d='M9%206h9a8%208%200%200%201%200%2016H9'/%3E%3Cpath%20d='M17%2022l10%2016'/%3E%3Cpath%20d='M27%206v32'/%3E%3Cpath%20d='M27%2023l10-17'/%3E%3Cpath%20d='M27%2023l10%2015'/%3E%3C/g%3E%3C/svg%3E") !important;
+  background-repeat:no-repeat !important; background-position:center !important; background-size:contain !important;
+}
+
+/* ==========================================================================
+   Global contextual sidebar (Elementor-style) — full nav tree
+   ========================================================================== */
+.rk-rail-full{ width:250px; padding:12px 10px; display:flex; flex-direction:column; max-height:calc(100vh - 60px); }
+.rk-rail-head{ display:flex; align-items:center; justify-content:space-between; gap:8px; padding:4px 4px 12px; border-bottom:1px solid var(--line); margin-bottom:8px; }
+.rk-rail-id{ min-width:0; }
+.rk-rail-collapse{ flex:none; width:28px; height:28px; border:1px solid var(--line); background:var(--white); border-radius:7px; cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--muted); padding:0; }
+.rk-rail-collapse:hover{ background:var(--soft); color:var(--ink); }
+.rk-rail-collapse .dashicons{ font-size:16px; width:16px; height:16px; transition:transform .2s; }
+.rk-rail-nav{ display:flex; flex-direction:column; gap:1px; overflow-y:auto; flex:1; padding-right:2px; }
+.rk-rail-link,.rk-rail-grouphead{ display:flex; align-items:center; gap:10px; width:100%; text-align:left; border:0; background:transparent; cursor:pointer; padding:9px 10px; border-radius:8px; font-size:13px; font-weight:500; color:var(--ink2)!important; position:relative; }
+.rk-rail-link .dashicons,.rk-rail-grouphead > .dashicons{ font-size:17px; width:17px; height:17px; color:var(--muted); flex:none; }
+.rk-rail-link:hover,.rk-rail-grouphead:hover{ background:var(--soft); color:var(--ink)!important; }
+.rk-rail-link.is-active{ background:var(--rk-l); color:var(--rk)!important; }
+.rk-rail-link.is-active .dashicons{ color:var(--rk); }
+.rk-rail-txt{ flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.rk-rail-caret{ font-size:16px!important; width:16px!important; height:16px!important; color:var(--faint); transition:transform .2s; flex:none; }
+.rk-rail-group.is-open > .rk-rail-grouphead .rk-rail-caret{ transform:rotate(180deg); }
+.rk-rail-sub{ display:none; flex-direction:column; gap:1px; padding:2px 0 4px 0; }
+.rk-rail-group.is-open .rk-rail-sub{ display:flex; }
+.rk-rail-sublink{ padding:7px 10px 7px 38px; border-radius:7px; font-size:12.5px; color:var(--muted)!important; position:relative; }
+.rk-rail-sublink::before{ content:""; position:absolute; left:22px; top:0; bottom:0; width:1px; background:var(--line); }
+.rk-rail-sublink:hover{ background:var(--soft); color:var(--ink)!important; }
+.rk-rail-sublink.is-active{ background:var(--rk-l); color:var(--rk)!important; font-weight:600; }
+.rk-rail-full .rk-rail-foot{ margin-top:10px; padding-top:10px; }
+
+/* collapsed mini rail */
+.rk-rail-full.is-mini{ width:60px; padding:12px 8px; }
+.rk-rail-full.is-mini .rk-rail-id,.rk-rail-full.is-mini .rk-rail-txt,.rk-rail-full.is-mini .rk-rail-caret,.rk-rail-full.is-mini .rk-rail-foot,.rk-rail-full.is-mini .rk-rail-sub{ display:none!important; }
+.rk-rail-full.is-mini .rk-rail-head{ justify-content:center; }
+.rk-rail-full.is-mini .rk-rail-brand{ display:none; }
+.rk-rail-full.is-mini .rk-rail-collapse .dashicons{ transform:rotate(180deg); }
+.rk-rail-full.is-mini .rk-rail-link,.rk-rail-full.is-mini .rk-rail-grouphead{ justify-content:center; padding:10px 0; }
+.rk-rail-full.is-mini [data-tip]{ position:relative; }
+.rk-rail-full.is-mini [data-tip]:hover::after{ content:attr(data-tip); position:absolute; left:calc(100% + 10px); top:50%; transform:translateY(-50%); background:var(--ink); color:#fff; font-size:12px; font-weight:500; padding:5px 9px; border-radius:6px; white-space:nowrap; z-index:100; pointer-events:none; }
+
+@media screen and (max-width:900px){
+  .rk-rail-full{ width:100%; max-height:none; position:static; }
+  .rk-rail-full.is-mini{ width:100%; }
+  .rk-rail-full.is-mini .rk-rail-id,.rk-rail-full.is-mini .rk-rail-txt,.rk-rail-full.is-mini .rk-rail-foot{ display:block!important; }
+}
+
+/* ==========================================================================
+   Elementor-match refinements — Suite Modules page + sidebar
+   ========================================================================== */
+/* Page title + subtext */
+.rk-suite-wrap .pk-panel > h3{ font-size:24px; font-weight:700; color:#1c232b; margin:0 0 6px; letter-spacing:-.01em; }
+.rk-suite-wrap .pk-panel .description{ font-size:13.5px; color:#50575e; margin:0 0 24px; }
+
+/* Module cards */
+.rk-modgrid{ gap:16px; }
+.rk-modcard{ border:1px solid #dcdcde; border-radius:12px; padding:24px; }
+.rk-modcard-head h4,.rk-modcard-head h3,.rk-modcard-head strong{ font-size:16px; font-weight:700; color:#1c232b; }
+.rk-moddesc{ font-size:13.5px; color:#50575e; line-height:1.6; }
+
+/* Status pills */
+.rk-suite-wrap .rk-modstate::before{ display:none; }
+.rk-modstate-on{ display:inline-flex; align-items:center; gap:6px; background:#e2f6e9; color:#135e2e; font-size:12px; font-weight:600; padding:4px 11px; border-radius:20px; }
+.rk-modstate-off{ display:inline-flex; align-items:center; gap:6px; background:#f0f0f1; color:#787c82; font-size:12px; font-weight:600; padding:4px 11px; border-radius:20px; }
+.rk-modstate-err{ display:inline-flex; align-items:center; gap:6px; background:#fbecee; color:#b42318; font-size:12px; font-weight:600; padding:4px 11px; border-radius:20px; }
+
+/* Action buttons */
+.rk-suite-wrap .rk-modcard .button{ border:1px solid #c3c4c7; background:#f6f7f7; color:#2c3338; font-weight:600; }
+.rk-suite-wrap .rk-modcard .button:hover{ background:#fff; border-color:var(--rk); color:var(--rk); }
+.rk-suite-wrap .rk-modcard .button-primary{ background:var(--rk); border-color:var(--rk); color:#fff; }
+.rk-suite-wrap .rk-modcard .button-primary:hover{ background:var(--rk-d); border-color:var(--rk-d); color:#fff; }
+
+/* Sidebar active — soft bg + 3px accent bar */
+.rk-rail-link.is-active,.rk-rail-sublink.is-active{ box-shadow:inset 3px 0 0 var(--rk); }
+
+/* Mobile: stack cards, full-width action */
+@media screen and (max-width:782px){
+  .rk-modgrid{ grid-template-columns:1fr !important; }
+  .rk-modcard-foot{ flex-direction:column; align-items:stretch; gap:12px; }
+  .rk-suite-wrap .rk-modcard .button{ width:100%; justify-content:center; min-height:44px; }
+}
+
+/* ==========================================================================
+   Sidebar — match Elementor reference exactly (monochrome, roomy, edge toggle)
+   ========================================================================== */
+.rk-rail-full{ padding:14px 12px; }
+.rk-rail-head{ position:relative; padding:6px 4px 14px; }
+/* circular collapse button straddling the right edge */
+.rk-rail-collapse{ position:absolute; top:16px; right:-25px; width:26px; height:26px; border-radius:50%; border:1px solid var(--line2); background:#fff; box-shadow:0 1px 4px rgba(21,24,35,.14); color:#50575e; z-index:8; padding:0; }
+.rk-rail-collapse:hover{ background:#f6f7f7; color:#1c232b; }
+.rk-rail-collapse .dashicons{ font-size:16px; width:16px; height:16px; }
+
+/* rows — larger, cleaner, dark text + dark outline icons */
+.rk-rail-link,.rk-rail-grouphead{ padding:11px 12px; font-size:14px; font-weight:500; color:#1c232b !important; gap:12px; border-radius:8px; }
+.rk-rail-link .dashicons,.rk-rail-grouphead > .dashicons{ font-size:20px; width:20px; height:20px; color:#3c434a; }
+.rk-rail-link:hover,.rk-rail-grouphead:hover{ background:#f6f7f7; }
+
+/* active — Elementor's soft gray highlight, no accent bar */
+.rk-rail-link.is-active{ background:#f0f0f1 !important; color:#1c232b !important; box-shadow:none !important; }
+.rk-rail-link.is-active .dashicons{ color:#1c232b; }
+
+/* sub-items */
+.rk-rail-sublink{ padding:9px 12px 9px 46px; font-size:13.5px; color:#50575e !important; }
+.rk-rail-sublink::before{ left:26px; }
+.rk-rail-sublink:hover{ background:#f6f7f7; color:#1c232b !important; }
+.rk-rail-sublink.is-active{ background:#f0f0f1 !important; color:#1c232b !important; font-weight:600; box-shadow:none !important; }
+.rk-rail-caret{ color:#8c8f94; }
+
+/* brand + version subtle */
+.rk-rail-brand .pk-brand{ font-size:15px; font-weight:600; color:#1c232b; }
+.rk-rail-brand .pk-tag{ color:#787c82; }
+.rk-rail-full .rk-rail-foot .pk-status{ background:#f0f0f1; color:#50575e; }
+.rk-rail-full .rk-rail-foot .pk-dot{ background:#7a8794; }
+
+/* keep the rail fixed in view, full height */
+.rk-rail-full{ position:sticky; top:40px; align-self:flex-start; }
+
+/* ==========================================================================
+   Sidebar — spacing + alignment tuned to Elementor reference (v1.12.3)
+   ========================================================================== */
+.rk-rail-full{ padding:16px 14px; }
+.rk-rail-head{ padding:8px 6px 16px; margin-bottom:6px; }
+.rk-rail-brand{ gap:14px; align-items:center; }
+
+/* roomier rows, consistent left alignment */
+.rk-rail-nav{ display:flex; flex-direction:column; gap:2px; }
+.rk-rail-link,.rk-rail-grouphead{ padding:13px 14px; font-size:15px; font-weight:500; gap:14px; border-radius:8px; line-height:1.2; min-height:48px; box-sizing:border-box; align-items:center; }
+.rk-rail-link .dashicons,.rk-rail-grouphead > .dashicons{ font-size:22px; width:22px; height:22px; flex:0 0 22px; text-align:left; }
+.rk-rail-link > span:not(.dashicons):not(.rk-rail-caret),
+.rk-rail-grouphead > span:not(.dashicons):not(.rk-rail-caret){ flex:1 1 auto; }
+.rk-rail-caret{ flex:0 0 auto; margin-left:auto; font-size:20px; width:20px; height:20px; }
+
+/* sub-items align under parent label (icon-width + gap indent) */
+.rk-rail-sub{ margin:2px 0; }
+.rk-rail-sublink{ padding:11px 14px 11px 50px; font-size:14px; min-height:42px; box-sizing:border-box; align-items:center; }
+.rk-rail-sublink::before{ left:28px; }
+
+/* ==========================================================================
+   Elementor-style full-bleed white surface (v1.12.4)
+   Sidebar + content become ONE flush white area separated by a 1px divider,
+   filling full height against the WP admin menu — no cards, no gray gutter.
+   ========================================================================== */
+body.rk-admin #wpcontent{ padding-left:0; }
+body.rk-admin #wpbody-content{ padding-bottom:0; }
+body.rk-admin .wrap.rk-has-rail{ margin:0; padding:0; gap:0; display:flex; align-items:flex-start; background:#fff; min-height:calc(100vh - 32px); }
+
+/* sidebar: flush full-height white panel, thin right divider, no card look */
+.rk-rail-full:not(.is-mini){ width:272px; }
+.rk-has-rail > .rk-rail.rk-rail-full{
+  border:0; border-right:1px solid var(--line); border-radius:0; box-shadow:none;
+  margin:0; background:#fff; position:sticky; top:32px; align-self:flex-start;
+  height:calc(100vh - 32px); max-height:calc(100vh - 32px); padding:18px 16px;
+}
+
+/* content: white surface, roomy padding to match reference */
+.rk-has-rail > .rk-main{ background:#fff; padding:28px 34px 48px; flex:1 1 auto; min-width:0; }
+
+/* collapse button rides the divider line */
+.rk-has-rail > .rk-rail.rk-rail-full .rk-rail-collapse{ right:-13px; top:22px; }
+
+@media screen and (max-width:782px){
+  body.rk-admin .wrap.rk-has-rail{ flex-direction:column; min-height:0; }
+  .rk-has-rail > .rk-rail.rk-rail-full{ position:static; width:100%; height:auto; max-height:none; border-right:0; border-bottom:1px solid var(--line); }
+  .rk-has-rail > .rk-rail.rk-rail-full .rk-rail-collapse{ right:12px; top:16px; }
+  .rk-has-rail > .rk-main{ padding:20px 16px 32px; }
+}
+
+/* ==========================================================================
+   Polish pass (v1.12.6) — flat minimal content, remove WP chrome & accents
+   ========================================================================== */
+/* remove all heading accent bars */
+.rk-suite-wrap h3::before,.rk-core-wrap h3::before,.rk-migrate-wrap h3::before,
+.rk-seo-wrap h3::before,.rk-theme-wrap h3::before,.rk-lib-wrap h3::before,
+.rk-core-wrap .pk-hero::before,.rk-theme-wrap .pk-hero::before,
+.rk-seo-hero::before,.rk-lib-hero::before{ display:none !important; content:none !important; }
+
+/* flatten panels — no card bg / border / radius / shadow / padding */
+.rk-suite-wrap .pk-panel,.rk-core-wrap .pk-panel,.rk-migrate-wrap .pk-panel,
+.rk-seo-wrap .pk-panel,.rk-theme-wrap .pk-panel,.rk-lib-wrap .pk-panel{
+  background:transparent !important; border:0 !important; border-radius:0 !important;
+  box-shadow:none !important; padding:0 !important; margin:0 0 10px !important;
+}
+
+/* hide WordPress default admin footer on RK screens */
+body.rk-admin #wpfooter{ display:none !important; }
+
+/* collapse button: perfectly centered circle + glyph */
+.rk-has-rail > .rk-rail.rk-rail-full .rk-rail-collapse{
+  display:flex !important; align-items:center; justify-content:center; line-height:0; padding:0;
+}
+.rk-has-rail > .rk-rail.rk-rail-full .rk-rail-collapse .dashicons{
+  display:block; margin:0; line-height:1; font-size:18px; width:18px; height:18px; text-align:center;
+}
+
+/* content area: clean minimal, balanced padding + comfortable max width */
+.rk-has-rail > .rk-main{ padding:26px 32px 40px; }
+.rk-has-rail > .rk-main > .rk-page-head,
+.rk-has-rail > .rk-main > h1{ margin-top:0; }
+
+/* tables + inner cards: subtle, flat, premium */
+.rk-main .widefat{ border:1px solid var(--line); border-radius:10px; box-shadow:none; overflow:hidden; }
+.rk-main .widefat thead th{ background:var(--soft); }
+.rk-modcard{ box-shadow:none; }
+
+/* module/feature cards: keep one hairline border, soften radius, white bg */
+.rk-seo-card,.rk-modcard{ background:#fff !important; border:1px solid var(--line) !important; border-radius:10px !important; box-shadow:none !important; }
+
+/* ==========================================================================
+   Layout + sidebar structural fixes (v1.12.7)
+   Full-bleed white surface · edge-hugging scrollbar · centered toggle · mini rail
+   ========================================================================== */
+/* full-bleed white content region — remove right/bottom gray gaps */
+body.rk-admin #wpcontent{ padding-left:0; background:#fff; }
+body.rk-admin #wpbody,
+body.rk-admin #wpbody-content{ background:#fff; }
+body.rk-admin #wpbody-content{ padding-bottom:0; }
+body.rk-admin #wpfooter{ display:none !important; }
+body.rk-admin #wpbody-content > .wrap.rk-has-rail{ margin:0; min-height:calc(100vh - 32px); }
+@media screen and (max-width:782px){
+  body.rk-admin #wpbody-content > .wrap.rk-has-rail{ min-height:0; }
+}
+
+/* sidebar shell: fixed viewport height, header+footer pinned, nav scrolls */
+.rk-has-rail > .rk-rail.rk-rail-full{
+  padding:0; overflow:visible; display:flex; flex-direction:column;
+  position:sticky; top:32px; height:calc(100vh - 32px); max-height:calc(100vh - 32px);
+}
+.rk-has-rail > .rk-rail.rk-rail-full .rk-rail-head{ padding:16px 16px 12px; margin:0; flex:0 0 auto; }
+.rk-has-rail > .rk-rail.rk-rail-full .rk-rail-nav{ flex:1 1 auto; overflow-y:auto; overflow-x:hidden; padding:6px 2px 6px 10px; }
+.rk-has-rail > .rk-rail.rk-rail-full .rk-rail-foot{ flex:0 0 auto; padding:12px 16px; margin:0; border-top:1px solid var(--line); }
+
+/* thin scrollbar hugging the divider edge */
+.rk-rail-nav{ scrollbar-width:thin; scrollbar-color:#d3d5d8 transparent; }
+.rk-rail-nav::-webkit-scrollbar{ width:7px; }
+.rk-rail-nav::-webkit-scrollbar-thumb{ background:#d3d5d8; border-radius:7px; }
+.rk-rail-nav::-webkit-scrollbar-track{ background:transparent; }
+
+/* collapse button: centered circle straddling the divider */
+.rk-has-rail > .rk-rail.rk-rail-full .rk-rail-collapse{
+  position:absolute; top:20px; right:-13px; width:26px; height:26px; z-index:9; padding:0;
+  display:flex; align-items:center; justify-content:center; line-height:0;
+  border-radius:50%; border:1px solid var(--line2); background:#fff; box-shadow:0 1px 4px rgba(21,24,35,.14);
+}
+.rk-has-rail > .rk-rail.rk-rail-full .rk-rail-collapse .dashicons{ display:block; margin:0; line-height:1; font-size:17px; width:17px; height:17px; }
+
+/* mini (collapsed) rail: centered icons + centered active square, no bar */
+.rk-rail-full.is-mini{ width:64px; padding:0; }
+.rk-rail-full.is-mini .rk-rail-head{ padding:16px 8px 12px; justify-content:center; }
+.rk-rail-full.is-mini .rk-rail-nav{ padding:6px 6px; }
+.rk-rail-full.is-mini .rk-rail-link,
+.rk-rail-full.is-mini .rk-rail-grouphead{ justify-content:center; padding:11px 0; gap:0; }
+.rk-rail-full.is-mini .rk-rail-link .dashicons,
+.rk-rail-full.is-mini .rk-rail-grouphead > .dashicons{ margin:0; }
+.rk-rail-full.is-mini .rk-rail-link.is-active{ background:#f0f0f1 !important; box-shadow:none !important; border-radius:8px; }
+
+/* content: fill remaining width, balanced padding */
+.rk-has-rail > .rk-main{ flex:1 1 auto; min-width:0; width:auto; padding:26px 34px 40px; }
+
+/* ==========================================================================
+   Consistency + fixed sidebar + sticky save bar (v1.12.8)
+   ========================================================================== */
+/* uniform 1380px content shell on EVERY RK admin page; kill uneven WP margins */
+body.rk-admin .wrap.rk-core-wrap,
+body.rk-admin .wrap.rk-migrate-wrap,
+body.rk-admin .wrap.rk-seo-wrap,
+body.rk-admin .wrap.rk-theme-wrap,
+body.rk-admin .wrap.rk-lib-wrap,
+body.rk-admin .wrap.rk-suite-wrap{ max-width:1380px !important; margin:0 !important; }
+
+/* sidebar truly fixed in view (sticky at top, own height, never scrolls away) */
+.rk-has-rail > .rk-rail.rk-rail-full{ position:sticky; top:32px; align-self:flex-start; }
+
+/* mini rail: show the RK monogram, centered, no stray box */
+.rk-rail-full.is-mini .rk-rail-head{ justify-content:center; padding:14px 8px 12px; }
+.rk-rail-full.is-mini .rk-rail-brand{ margin:0; justify-content:center; }
+.rk-rail-full.is-mini .pk-logo{ display:block !important; width:34px !important; height:34px !important; margin:0 auto; }
+
+/* ---- sticky bottom action bar for edit forms ---- */
+.rk-savebar{
+  position:sticky; bottom:0; z-index:30;
+  margin:24px -34px -40px; padding:14px 34px;
+  background:#fff; border-top:1px solid var(--line);
+  box-shadow:0 -2px 10px rgba(21,24,35,.05);
+}
+.rk-savebar-inner{ display:flex; align-items:center; gap:10px; }
+.rk-savebar-spacer{ flex:1 1 auto; }
+.rk-savebar .button{ min-height:36px; display:inline-flex; align-items:center; }
+.rk-savebar-back .dashicons{ font-size:16px; width:16px; height:16px; line-height:1; margin-right:2px; }
+@media screen and (max-width:782px){
+  .rk-savebar{ margin:20px -16px -32px; padding:12px 16px; }
+  .rk-savebar-inner{ flex-wrap:wrap; }
+  .rk-savebar .button{ width:100%; justify-content:center; }
+  .rk-savebar-spacer{ display:none; }
+}
+
+/* ==========================================================================
+   Sidebar brand + collapsed logo + repositioned action bar (v1.12.9)
+   ========================================================================== */
+/* remove the stray partial divider bar + extra padding under the brand */
+.rk-has-rail > .rk-rail.rk-rail-full .rk-rail-brand{ border-bottom:0 !important; margin-bottom:0 !important; padding:0 !important; }
+
+/* show the RK monogram in collapsed (mini) rail — was display:none */
+.rk-rail-full.is-mini .rk-rail-brand{ display:flex !important; justify-content:center; margin:0 !important; padding:0 !important; }
+.rk-rail-full.is-mini .rk-rail-id{ display:none !important; }
+.rk-rail-full.is-mini .pk-logo{ display:block !important; width:32px !important; height:32px !important; margin:0 auto; }
+.rk-rail-full.is-mini .rk-rail-head{ position:relative; }
+
+/* ---- action bar: full-width, pinned to the very bottom of the content ---- */
+.rk-has-rail > .rk-main:has(.rk-savebar){ min-height:calc(100vh - 32px); display:flex; flex-direction:column; }
+.rk-main:has(.rk-savebar) > .pk-panel{ display:flex; flex-direction:column; flex:1 1 auto; min-height:0; }
+.rk-main:has(.rk-savebar) > .pk-panel > form.rk-form{ display:flex; flex-direction:column; flex:1 1 auto; }
+.rk-form > .rk-savebar{ margin-top:auto; }
+.rk-savebar{
+  position:sticky; bottom:0; z-index:30;
+  margin:28px -34px -40px; padding:14px 34px;
+  background:#fff; border-top:1px solid var(--line);
+  box-shadow:0 -3px 14px rgba(21,24,35,.06);
+}
+@media screen and (max-width:782px){
+  .rk-has-rail > .rk-main:has(.rk-savebar){ min-height:0; }
+  .rk-savebar{ margin:20px -16px 0; padding:12px 16px; }
+}
+
+/* ==========================================================================
+   TRUE fixed sidebar + full-width content (v1.12.10)
+   position:fixed is immune to ancestor overflow that was breaking sticky.
+   Offsets past the WP admin menu (160px normal / 36px folded).
+   ========================================================================== */
+/* full-width content shell — remove the 1380 cap and right-side gap */
+body.rk-admin .wrap.rk-core-wrap,
+body.rk-admin .wrap.rk-migrate-wrap,
+body.rk-admin .wrap.rk-seo-wrap,
+body.rk-admin .wrap.rk-theme-wrap,
+body.rk-admin .wrap.rk-lib-wrap,
+body.rk-admin .wrap.rk-suite-wrap{ max-width:none !important; margin:0 !important; }
+
+/* sidebar pinned to the viewport, full height, never scrolls with the page */
+.rk-has-rail > .rk-rail.rk-rail-full{
+  position:fixed !important; top:32px; bottom:0; left:160px;
+  width:272px; height:auto !important; max-height:none !important;
+  z-index:9; align-self:auto;
+}
+body.folded .rk-has-rail > .rk-rail.rk-rail-full,
+body.auto-fold .rk-has-rail > .rk-rail.rk-rail-full{ left:36px; }
+.rk-has-rail > .rk-rail.rk-rail-full.is-mini{ width:64px; }
+
+/* content clears the fixed sidebar and fills the rest of the width */
+.rk-has-rail > .rk-main{ margin-left:272px; width:auto; }
+.rk-has-rail:has(.rk-rail-full.is-mini) > .rk-main{ margin-left:64px; }
+
+/* mobile: menu is off-canvas → stack, sidebar back in flow */
+@media screen and (max-width:782px){
+  .rk-has-rail > .rk-rail.rk-rail-full{
+    position:static !important; top:auto; bottom:auto; left:auto;
+    width:100%; height:auto !important;
+  }
+  .rk-has-rail > .rk-main,
+  .rk-has-rail:has(.rk-rail-full.is-mini) > .rk-main{ margin-left:0; }
+}
+
+/* ==========================================================================
+   Sticky in-flow sidebar (v1.12.11)
+   Fixed-positioning fought the WP menu offset → overlap. Back to in-flow
+   sticky so it auto-aligns right after the WP menu in every state.
+   Neutralize ancestor overflow (the real reason sticky wasn't engaging).
+   ========================================================================== */
+body.rk-admin #wpwrap,
+body.rk-admin #wpcontent,
+body.rk-admin #wpbody,
+body.rk-admin #wpbody-content{ overflow:visible !important; }
+
+/* sidebar: in flow, sticky, no manual left offset (WP menu handles it) */
+.rk-has-rail > .rk-rail.rk-rail-full,
+body.folded .rk-has-rail > .rk-rail.rk-rail-full,
+body.auto-fold .rk-has-rail > .rk-rail.rk-rail-full{
+  position:sticky !important; top:32px !important; left:auto !important; bottom:auto !important;
+  align-self:flex-start; height:calc(100vh - 32px) !important; max-height:calc(100vh - 32px) !important;
+}
+
+/* content fills the rest of the row — no manual margin needed anymore */
+.rk-has-rail > .rk-main,
+.rk-has-rail:has(.rk-rail-full.is-mini) > .rk-main{ margin-left:0 !important; }
+
+@media screen and (max-width:782px){
+  .rk-has-rail > .rk-rail.rk-rail-full,
+  body.folded .rk-has-rail > .rk-rail.rk-rail-full,
+  body.auto-fold .rk-has-rail > .rk-rail.rk-rail-full{
+    position:static !important; height:auto !important; max-height:none !important;
+  }
+}
+
+/* ==========================================================================
+   Dashboard KPIs + width + button fixes (v1.12.12)
+   ========================================================================== */
+/* bulletproof full-width: cover wrap classes with OR without .wrap prefix */
+body.rk-admin .rk-core-wrap,
+body.rk-admin .rk-migrate-wrap,
+body.rk-admin .rk-seo-wrap,
+body.rk-admin .rk-theme-wrap,
+body.rk-admin .rk-lib-wrap,
+body.rk-admin .rk-suite-wrap{ max-width:none !important; width:auto !important; margin:0 !important; }
+
+/* RK Migrate hero buttons → normal size, matched with the rest */
+.rk-migrate-wrap .button-hero{ font-size:13px !important; padding:8px 20px !important; height:auto !important; min-height:36px !important; line-height:1.4 !important; }
+
+/* ---- KPI dashboard ---- */
+.rk-sub{ font-size:13.5px; color:#50575e; margin:4px 0 0; }
+.rk-kpi-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin:20px 0 24px; }
+.rk-kpi{ background:#fff; border:1px solid var(--line); border-radius:12px; padding:18px 20px; display:flex; flex-direction:column; gap:7px; }
+.rk-kpi-ico{ font-size:20px; width:20px; height:20px; color:var(--rk); }
+.rk-kpi-val{ font-size:26px; font-weight:700; color:#1c232b; line-height:1.05; }
+.rk-kpi-label{ font-size:13px; color:#50575e; }
+.rk-dash-cols{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.rk-dash-card{ background:#fff; border:1px solid var(--line); border-radius:12px; padding:20px 22px; }
+.rk-dash-card-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.rk-dash-card-head h3{ font-size:16px; font-weight:700; margin:0; color:#1c232b; }
+.rk-modlist{ list-style:none; margin:0; padding:0; }
+.rk-modlist li{ display:flex; align-items:center; justify-content:space-between; padding:11px 0; border-bottom:1px solid var(--line); }
+.rk-modlist li:last-child{ border-bottom:0; }
+.rk-modlist-name{ display:flex; align-items:center; gap:10px; font-weight:500; color:#1c232b; }
+.rk-modlist-name .dashicons{ color:#3c434a; font-size:18px; width:18px; height:18px; }
+.rk-quicklinks{ display:flex; flex-direction:column; gap:8px; }
+.rk-quicklink{ display:flex; align-items:center; gap:10px; padding:11px 14px; border:1px solid var(--line); border-radius:8px; color:#1c232b !important; font-weight:500; background:#fff; text-decoration:none; }
+.rk-quicklink:hover{ background:var(--soft); border-color:var(--rk); color:var(--rk) !important; }
+.rk-quicklink .dashicons{ color:var(--rk); }
+@media screen and (max-width:1180px){ .rk-kpi-grid{ grid-template-columns:repeat(2,1fr); } .rk-dash-cols{ grid-template-columns:1fr; } }
+@media screen and (max-width:600px){ .rk-kpi-grid{ grid-template-columns:1fr; } }
+
+/* ==========================================================================
+   Full-width inner content + premium KPI cards (v1.12.13)
+   ========================================================================== */
+/* remove inner content caps so panels/forms/toggles/tables fill the width */
+.rk-main .rk-form,
+.rk-main .rk-toggles,
+.rk-main .pk-panel,
+.rk-main .rk-form-section,
+.rk-main .widefat{ max-width:none !important; }
+/* keep single text inputs at a readable width (not stretched across the screen) */
+.rk-main .rk-form-field input[type=text],
+.rk-main .rk-form-field input[type=url],
+.rk-main .rk-form-field input[type=email]{ max-width:620px; }
+
+/* ---- premium KPI cards ---- */
+.rk-kpi{
+  background:linear-gradient(180deg,#ffffff 0%,#fbfbfd 100%);
+  border:1px solid #e7e8ee; border-radius:14px; padding:20px 22px;
+  box-shadow:0 1px 2px rgba(16,24,40,.04); transition:box-shadow .18s, transform .18s, border-color .18s;
+  gap:0;
+}
+.rk-kpi:hover{ box-shadow:0 10px 28px -14px rgba(16,24,40,.22); transform:translateY(-2px); border-color:#d8d9e6; }
+.rk-kpi-ico{
+  width:42px !important; height:42px !important; font-size:21px !important;
+  display:flex; align-items:center; justify-content:center; border-radius:12px;
+  background:rgba(58,85,217,.10); color:var(--rk); margin:0 0 14px;
+}
+.rk-kpi-val{ font-size:30px; font-weight:750; letter-spacing:-.02em; color:#1c232b; line-height:1.05; margin-bottom:4px; }
+.rk-kpi-label{ font-size:12.5px; font-weight:500; color:#6b7280; }
+
+/* dash cards — subtle premium lift */
+.rk-dash-card{ box-shadow:0 1px 2px rgba(16,24,40,.04); }
+.rk-dash-card-head .button{ min-height:34px; border-radius:8px; }
+
+/* ==========================================================================
+   Savebar spacing + upgraded dashboard grid (v1.12.14)
+   ========================================================================== */
+/* guaranteed gap between the last content row and the sticky action bar */
+.rk-main:has(.rk-savebar) form.rk-form > :nth-last-child(2){ margin-bottom:30px !important; }
+.rk-savebar{ margin-top:auto; }
+
+/* per-card colored KPI icons — premium, varied */
+.rk-kpi:nth-child(8n+1) .rk-kpi-ico{ background:rgba(58,85,217,.10);  color:#3a55d9; }
+.rk-kpi:nth-child(8n+2) .rk-kpi-ico{ background:rgba(15,157,107,.12); color:#0f9d6b; }
+.rk-kpi:nth-child(8n+3) .rk-kpi-ico{ background:rgba(217,119,6,.14);  color:#d97706; }
+.rk-kpi:nth-child(8n+4) .rk-kpi-ico{ background:rgba(124,58,237,.12); color:#7c3aed; }
+.rk-kpi:nth-child(8n+5) .rk-kpi-ico{ background:rgba(8,145,178,.12);  color:#0891b2; }
+.rk-kpi:nth-child(8n+6) .rk-kpi-ico{ background:rgba(219,39,119,.12); color:#db2777; }
+.rk-kpi:nth-child(8n+7) .rk-kpi-ico{ background:rgba(22,163,74,.12);  color:#16a34a; }
+.rk-kpi:nth-child(8n+8) .rk-kpi-ico{ background:rgba(79,70,229,.12);  color:#4f46e5; }
+
+/* dashboard polish */
+.rk-kpi-grid{ gap:18px; }
+.rk-kpi{ padding:22px 24px; }
+.rk-kpi:hover{ transform:translateY(-3px); }
+.rk-dash-card{ padding:22px 24px; border-radius:14px; }
+.rk-dash-card-head{ padding-bottom:14px; margin-bottom:14px; border-bottom:1px solid var(--line); }
+.rk-modlist-name .dashicons{ color:var(--rk); }
+
+/* ==========================================================================
+   Premium dashboard hero + KPI cards (v1.12.15)
+   ========================================================================== */
+/* hero banner */
+.rk-hero{
+  position:relative; overflow:hidden; border:1px solid #e7e8ee; border-radius:18px;
+  padding:30px 34px; margin:4px 0 22px; display:flex; justify-content:space-between;
+  align-items:flex-start; gap:20px; flex-wrap:wrap;
+  background:
+    radial-gradient(120% 150% at 100% 0%, rgba(58,117,196,.16) 0%, rgba(58,117,196,0) 46%),
+    radial-gradient(90% 120% at 88% 8%, rgba(15,157,107,.10) 0%, rgba(15,157,107,0) 42%),
+    linear-gradient(180deg,#ffffff 0%,#fbfcfe 100%);
+}
+.rk-hero::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background-image:radial-gradient(rgba(28,35,43,.06) 1px, transparent 1px); background-size:18px 18px;
+  -webkit-mask-image:linear-gradient(90deg, transparent 42%, #000 100%);
+  mask-image:linear-gradient(90deg, transparent 42%, #000 100%);
+}
+.rk-hero-main,.rk-hero-side{ position:relative; z-index:1; }
+.rk-hero-eyebrow{ display:inline-flex; align-items:center; gap:9px; font-size:11px; font-weight:700; letter-spacing:.15em; color:#8a90a2; text-transform:uppercase; }
+.rk-hero-eyebrow i{ width:22px; height:2px; border-radius:2px; background:var(--rk); }
+.rk-hero-title{ font-size:31px; font-weight:750; letter-spacing:-.025em; color:#1c232b; margin:12px 0 6px; line-height:1.1; }
+.rk-hero-title span{ color:var(--rk); }
+.rk-hero-sub{ font-size:14px; color:#50575e; margin:0; }
+.rk-hero-side{ display:flex; flex-direction:column; align-items:flex-end; gap:13px; text-align:right; }
+.rk-hero-status{ display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:600; padding:7px 15px; border-radius:999px; }
+.rk-hero-status.is-ok{ background:#e6f6ec; color:#137a48; }
+.rk-hero-status.is-warn{ background:#fff3e0; color:#b45309; }
+.rk-hero-status .rk-dot{ width:8px; height:8px; border-radius:50%; background:currentColor; box-shadow:0 0 0 3px rgba(19,122,72,.16); }
+.rk-hero-status.is-warn .rk-dot{ box-shadow:0 0 0 3px rgba(180,83,9,.16); }
+.rk-hero-time{ font-size:13px; color:#6b7280; }
+.rk-hero-time strong{ color:#1c232b; font-weight:700; }
+
+/* premium KPI card: icon + big number, accent label, subtext, watermark */
+.rk-kpi{ position:relative; overflow:hidden; min-height:150px; justify-content:flex-start; gap:0; padding:22px 24px; }
+.rk-kpi-top{ display:flex; align-items:center; justify-content:space-between; gap:12px; position:relative; z-index:1; }
+.rk-kpi-ico{ margin:0 !important; }
+.rk-kpi-val{ font-size:36px; font-weight:750; letter-spacing:-.035em; color:#1c232b; line-height:1; }
+.rk-kpi-meta{ margin-top:auto; padding-top:18px; display:flex; flex-direction:column; gap:4px; position:relative; z-index:1; }
+.rk-kpi-label{ display:inline-flex; align-items:center; gap:9px; font-size:11.5px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:#3c434a; }
+.rk-kpi-label i{ width:16px; height:2px; border-radius:2px; background:var(--rk); }
+.rk-kpi-sub{ font-size:12.5px; color:#9096a4; padding-left:25px; }
+.rk-kpi-watermark{ position:absolute; right:-16px; bottom:-26px; font-size:120px !important; width:120px !important; height:120px !important; line-height:1 !important; color:#1c232b; opacity:.04; pointer-events:none; z-index:0; }
+.rk-kpi{ display:flex; flex-direction:column; }
+
+/* label dash + watermark tint follow each card's accent */
+.rk-kpi:nth-child(8n+1) .rk-kpi-label i{ background:#3a55d9; } .rk-kpi:nth-child(8n+1) .rk-kpi-watermark{ color:#3a55d9; }
+.rk-kpi:nth-child(8n+2) .rk-kpi-label i{ background:#0f9d6b; } .rk-kpi:nth-child(8n+2) .rk-kpi-watermark{ color:#0f9d6b; }
+.rk-kpi:nth-child(8n+3) .rk-kpi-label i{ background:#d97706; } .rk-kpi:nth-child(8n+3) .rk-kpi-watermark{ color:#d97706; }
+.rk-kpi:nth-child(8n+4) .rk-kpi-label i{ background:#7c3aed; } .rk-kpi:nth-child(8n+4) .rk-kpi-watermark{ color:#7c3aed; }
+.rk-kpi:nth-child(8n+5) .rk-kpi-label i{ background:#0891b2; } .rk-kpi:nth-child(8n+5) .rk-kpi-watermark{ color:#0891b2; }
+.rk-kpi:nth-child(8n+6) .rk-kpi-label i{ background:#db2777; } .rk-kpi:nth-child(8n+6) .rk-kpi-watermark{ color:#db2777; }
+.rk-kpi:nth-child(8n+7) .rk-kpi-label i{ background:#16a34a; } .rk-kpi:nth-child(8n+7) .rk-kpi-watermark{ color:#16a34a; }
+.rk-kpi:nth-child(8n+8) .rk-kpi-label i{ background:#4f46e5; } .rk-kpi:nth-child(8n+8) .rk-kpi-watermark{ color:#4f46e5; }
+.rk-kpi-watermark{ opacity:.05; }
+
+@media screen and (max-width:782px){
+  .rk-hero{ padding:22px; }
+  .rk-hero-side{ align-items:flex-start; text-align:left; }
+  .rk-hero-title{ font-size:25px; }
+}
+
+/* ==========================================================================
+   KPI cards — single consistent accent, no rainbow (v1.12.16)
+   ========================================================================== */
+.rk-kpi .rk-kpi-ico,
+.rk-kpi:nth-child(8n+1) .rk-kpi-ico,.rk-kpi:nth-child(8n+2) .rk-kpi-ico,
+.rk-kpi:nth-child(8n+3) .rk-kpi-ico,.rk-kpi:nth-child(8n+4) .rk-kpi-ico,
+.rk-kpi:nth-child(8n+5) .rk-kpi-ico,.rk-kpi:nth-child(8n+6) .rk-kpi-ico,
+.rk-kpi:nth-child(8n+7) .rk-kpi-ico,.rk-kpi:nth-child(8n+8) .rk-kpi-ico{
+  background:rgba(58,85,217,.09) !important; color:var(--rk) !important;
+}
+.rk-kpi .rk-kpi-label i,
+.rk-kpi:nth-child(8n+1) .rk-kpi-label i,.rk-kpi:nth-child(8n+2) .rk-kpi-label i,
+.rk-kpi:nth-child(8n+3) .rk-kpi-label i,.rk-kpi:nth-child(8n+4) .rk-kpi-label i,
+.rk-kpi:nth-child(8n+5) .rk-kpi-label i,.rk-kpi:nth-child(8n+6) .rk-kpi-label i,
+.rk-kpi:nth-child(8n+7) .rk-kpi-label i,.rk-kpi:nth-child(8n+8) .rk-kpi-label i{ background:var(--rk) !important; }
+.rk-kpi .rk-kpi-watermark,
+.rk-kpi:nth-child(8n+1) .rk-kpi-watermark,.rk-kpi:nth-child(8n+2) .rk-kpi-watermark,
+.rk-kpi:nth-child(8n+3) .rk-kpi-watermark,.rk-kpi:nth-child(8n+4) .rk-kpi-watermark,
+.rk-kpi:nth-child(8n+5) .rk-kpi-watermark,.rk-kpi:nth-child(8n+6) .rk-kpi-watermark,
+.rk-kpi:nth-child(8n+7) .rk-kpi-watermark,.rk-kpi:nth-child(8n+8) .rk-kpi-watermark{ color:#1c232b !important; opacity:.035 !important; }
+/* module list icons back to neutral dark (not accent) */
+.rk-modlist-name .dashicons{ color:#3c434a; }
+
+/* ==========================================================================
+   Collapsed/responsive sidebar cleanup (v1.12.17)
+   ========================================================================== */
+/* DESKTOP (≥783px): collapsed rail = clean icon-only, 64px, nothing truncated */
+@media screen and (min-width:783px){
+  .rk-rail-full.is-mini{ width:64px !important; }
+  .rk-rail-full.is-mini .rk-rail-id,
+  .rk-rail-full.is-mini .rk-rail-txt,
+  .rk-rail-full.is-mini .rk-rail-caret,
+  .rk-rail-full.is-mini .rk-rail-sub,
+  .rk-rail-full.is-mini .rk-rail-foot{ display:none !important; }
+  .rk-rail-full.is-mini .rk-rail-link,
+  .rk-rail-full.is-mini .rk-rail-grouphead{ justify-content:center !important; padding:11px 0 !important; gap:0 !important; }
+  .rk-rail-full.is-mini .rk-rail-link .dashicons,
+  .rk-rail-full.is-mini .rk-rail-grouphead > .dashicons{ margin:0 !important; }
+}
+
+/* MOBILE (≤782px): stack full-width, ALWAYS show full labels (never mini/truncated) */
+@media screen and (max-width:782px){
+  .rk-has-rail > .rk-rail.rk-rail-full,
+  .rk-has-rail > .rk-rail.rk-rail-full.is-mini{ width:100% !important; }
+  .rk-rail-full.is-mini .rk-rail-id,
+  .rk-rail-full.is-mini .rk-rail-txt,
+  .rk-rail-full.is-mini .rk-rail-foot,
+  .rk-rail-full.is-mini .rk-rail-caret{ display:block !important; }
+  .rk-rail-full.is-mini .rk-rail-link,
+  .rk-rail-full.is-mini .rk-rail-grouphead{ justify-content:flex-start !important; padding:11px 14px !important; gap:14px !important; }
+  .rk-rail-full .rk-rail-collapse{ display:none !important; } /* toggle is pointless when stacked */
+  .rk-rail-txt{ text-overflow:clip; overflow:visible; white-space:normal; }
+}
