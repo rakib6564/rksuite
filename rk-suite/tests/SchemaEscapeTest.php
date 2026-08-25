@@ -25,6 +25,6 @@ final class SchemaEscapeTest extends TestCase {
 		$data = array( 'name' => 'Tom & Jerry "Co"' );
 		$json = json_encode( $data, self::FLAGS );
 		$this->assertStringNotContainsString( '&', $json );
-		$this->assertStringContainsString( '&', $json );
+		$this->assertStringContainsString( '\\u0026', $json );
 	}
 }
