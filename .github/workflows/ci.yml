@@ -46,6 +46,7 @@ jobs:
           tools: cs2pr
       - name: Install PHPCS and WordPress standards
         run: |
+          composer global config --no-interaction allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
           composer global require --no-interaction --no-progress \
             squizlabs/php_codesniffer:^3.9 \
             wp-coding-standards/wpcs:^3.1 \
